@@ -7,7 +7,7 @@ The advantage of steganography over cryptography alone is that the intended secr
 Plainly visible encrypted messages, no matter how unbreakable they are, arouse interest and may in themselves be incriminating in countries in which encryption is illegal.
 
 This project implements Image Steganography wherein a cover Image is used where the message is embedded.
-More specifically, LSB Image Steganography
+More specifically, LSB Image Steganography.
 The project takes it a step further by encrypting the plain message first and then uses Steganography on the cipher text.
 
 ## Usage
