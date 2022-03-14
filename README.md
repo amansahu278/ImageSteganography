@@ -3,6 +3,9 @@
 While Cryptography deals with hiding the meaning of a message
 Steganography deals with hiding the existence of the message itself!
 
+The advantage of steganography over cryptography alone is that the intended secret message does not attract attention to itself as an object of scrutiny. 
+Plainly visible encrypted messages, no matter how unbreakable they are, arouse interest and may in themselves be incriminating in countries in which encryption is illegal.
+
 This project implements Image Steganography wherein a cover Image is used where the message is embedded.
 The project takes it a step further by encrypting the plain message first and then uses Steganography on the cipher text.
 
