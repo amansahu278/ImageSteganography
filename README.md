@@ -36,4 +36,4 @@ The final image will be of PNG format, with the filename being suffixed with "en
 * https://cryptography.io/en/latest/fernet/
 * https://auth0.com/blog/image-processing-in-python-with-pillow/
 * https://pillow.readthedocs.io/en/stable/reference/Image.html
-* https://towardsdatascience.com/hiding-data-in-an-image-image-steganography-using-python-e491b68b1372
+* https://www.edureka.co/blog/steganography-tutorial
