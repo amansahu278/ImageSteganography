@@ -105,11 +105,13 @@ class ImageSteg:
         extractedCT = extractedCT[:extractedCT.find(self.delimeter)]
         crypto = Crypto(password)
         PT = crypto.decryptCT(extractedCT)
+        self.unloadImage()
         return PT
 
     def saveImage(self):
         dest_filename_without_suffix, _ = os.path.splitext(self.dest_filename)
         dest_img_path = self.head + dest_filename_without_suffix + ".png"
         self.image.save(dest_img_path, "PNG")
+        self.unloadImage()
         print("Output file name: ", dest_img_path)
         return dest_img_path
