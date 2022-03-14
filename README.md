@@ -22,6 +22,8 @@ The project takes it a step further by encrypting the plain message first and th
                         Password/Key for encryption
   * -d DECRYPT, --decrypt DECRYPT
                         Password/Key for decryption
+## To Note:
+The final image will be of PNG format, with the filename being suffixed with "enc" and the format being png
 
 ## Implementation details
 * The encryption/decryption of text is implemented using the Fernet class of the cryptography package.
