@@ -36,7 +36,7 @@ class ImageSteg:
 
     def loadImageFromPath(self):
         try:
-            self.image = Image.open(self.filepath)
+            self.image = Image.open(self.filepath).convert('RGB')
         except (IOError, FileNotFoundError, PIL.UnidentifiedImageError, ValueError, TypeError):
             exit(1)
 
