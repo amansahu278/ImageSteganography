@@ -1,5 +1,9 @@
 import argparse
-from steganography import ImageSteg
+from steganography import ImageSteg, convertToBinary
+import PIL
+from PIL import Image, ImageDraw
+import base64
+from io import BytesIO
 
 def initParser():
     parser = argparse.ArgumentParser()
@@ -12,15 +16,21 @@ def initParser():
 
 if __name__ == '__main__':
     
-    parser = initParser()
-    args = parser.parse_args()
-    steg = ImageSteg(args.Image)
-    if (not args.decrypt and not args.encrypt):
-        print("Wrong input")
-        exit(1)
-    elif(args.decrypt):
-        PT = steg.decryptImage(args.decrypt)    
-        print(PT)
-    elif (args.encrypt and args.PlainText):
-        path = steg.encryptImage(args.encrypt, args.PlainText)
-        print(path)
+    # parser = initParser()
+    # args = parser.parse_args()
+    # steg = ImageSteg(args.Image)
+    # if (not args.decrypt and not args.encrypt):
+    #     print("Wrong input")
+    #     exit(1)
+    # elif(args.decrypt):
+    #     PT = steg.decryptImage(args.decrypt)    
+    #     print(PT)
+    # elif (args.encrypt and args.PlainText):
+    #     path = steg.encryptImage(args.encrypt, args.PlainText)
+    #     print(path)
+    steg = ImageSteg("message.png", "7th sem.png")
+    # print("Done")
+    steg.embedImageOntoImage("sample password")
+    # print("Done")
+    steg.decryptImageFromImage("sample password")
+    # print("Done")
