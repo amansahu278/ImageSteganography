@@ -69,6 +69,15 @@ class ImageSteg:
         self.cover_image.close()
         self.message_image.close()
 
+    def DCT(self):
+        pass
+
+    def Quantise(self):
+        pass
+
+    def IDCT(self):
+        pass
+
     def encryptImage(self, password, PT):
         
         crypto = Crypto(password)
@@ -181,7 +190,6 @@ class ImageSteg:
             cover_image_pixel_no += 1
         self.cover_image.save("output.png")
         
-
     def decryptImageFromImage(self, password):
 
         binDelim = convertToBinary(self.delimeter)
