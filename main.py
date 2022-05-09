@@ -20,7 +20,7 @@ if __name__ == '__main__':
     if (not args.decrypt and not args.encrypt):
         print("Wrong input")
         exit(1)
-    if args.type == 't':
+    if args.type in ['t', 'text', 'T', 'TEXT']:
         steg = ImageSteg(args.Image)
         if(args.decrypt):    
             PT = steg.decryptImage(args.decrypt)    
