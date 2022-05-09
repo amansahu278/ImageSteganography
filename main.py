@@ -35,11 +35,11 @@ if __name__ == '__main__':
                 PT = steg.decryptImageFromImage(args.decrypt)
             else:
                 PT = steg.decryptImageUsingDCT(args.decrypt)
-            print(PT)
+            
         elif (args.encrypt and args.MessageImage):
             steg = ImageSteg(args.Image, args.MessageImage)
             if args.MODE in ["normal", "n"]:
                 path = steg.embedImageOntoImage(args.encrypt)
             else:
                 path = steg.embedImageUsingDCT(args.encrypt)
-            print(path)
+            
