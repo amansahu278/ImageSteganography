@@ -19,7 +19,7 @@ The project takes it a step further by encrypting the plain message first and th
 * cd ImageSteganography-DCT
 * pipenv install
 * pipenv shell
-* If any errors had occured during pipenv install, repeat install of those libraries using pip install <library name>
+* If any errors had occured during pipenv install, repeat install of those libraries using pip install library-name
 * Run the usage commands shown below
 
 ## Usage
