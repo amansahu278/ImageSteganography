@@ -37,10 +37,10 @@ options:
                         Mode of embeddeing, normal/dct
 
 ## Usage example:
-For Image on image without DCT
+###For Image on image without DCT
  * Embedding: python main.py -i <Cover image path> -m <Message image path> -e <Password for encryption> -t "image" -mo "normal"
  * Extraction: python main.py -i output.png -d <Password> -t "image" -mo "normal"
-For Image on image with DCT
+###For Image on image with DCT
  * Embedding: python main.py -i <Cover image path> -m <Message image path> -e <Password for encryption> -t "image" -mo "dct"
  * Extraction: python main.py -i output.png -d <Password> -t "image" -mo "dct"
  
