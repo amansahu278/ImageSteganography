@@ -43,11 +43,11 @@ options:
 
 ## Usage example:
 1. For Image on image without DCT
- * Embedding: python main.py -i <Cover image path> -m <Message image path> -e <Password for encryption> -t "image" -mo "normal"
- * Extraction: python main.py -i output.png -d 'Password of your choice' -t "image" -mo "normal"
+ * Embedding: python main.py -i "Cover image path" -m "Message image path" -e "Password for encryption" -t "image" -mo "normal"
+ * Extraction: python main.py -i "output.png" -d 'Password of your choice' -t "image" -mo "normal"
 2. For Image on image with DCT
- * Embedding: python main.py -i <Cover image path> -m <Message image path> -e <Password for encryption> -t "image" -mo "dct"
- * Extraction: python main.py -i output.png -d 'Password of your choice' -t "image" -mo "dct"
+ * Embedding: python main.py -i "Cover image path" -m "Message image path" -e "Password for encryption" -t "image" -mo "dct"
+ * Extraction: python main.py -i "output.png" -d 'Password of your choice' -t "image" -mo "dct"
  
  
 ## To Note:
