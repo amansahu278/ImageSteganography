@@ -15,7 +15,12 @@ The inputted message image is cropped to a size of (64,64,3), following which it
 The project takes it a step further by encrypting the plain message first and then uses Steganography on the cipher text.
 
 ## Installation
-* cd ImageSteganography && pipenv install
+* pip install pipenv
+* cd ImageSteganography-DCT
+* pipenv install
+* pipenv shell
+* If any errors had occured during pipenv install, repeat install of those libraries using pip install <library name>
+* Run the usage commands shown below
 
 ## Usage
  * usage: main.py [-h] -i IMAGE [-m MESSAGEIMAGE] [-p PLAINTEXT] [-e ENCRYPT] [-d DECRYPT] [-t TYPE] [-mo MODE]
