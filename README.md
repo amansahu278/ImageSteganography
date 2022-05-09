@@ -1,4 +1,4 @@
-# ImageSteganography
+# DCT with ImageSteganography
 
 While Cryptography deals with hiding the meaning of a message
 Steganography deals with hiding the existence of the message itself!
@@ -7,29 +7,38 @@ The advantage of steganography over cryptography alone is that the intended secr
 Plainly visible encrypted messages, no matter how unbreakable they are, arouse interest and may in themselves be incriminating in countries in which encryption is illegal.
 
 This project implements Image Steganography wherein a cover Image is used where the message is embedded.
+
 More specifically, LSB Image Steganography.
+
+The inputted message image is cropped to a size of (64,64,3), following which it undergoes DCT processes before being embedded.
+
 The project takes it a step further by encrypting the plain message first and then uses Steganography on the cipher text.
 
-## Usage
-  * main.py [-h] -i IMAGE [-p PLAINTEXT] [-e ENCRYPT] [-d DECRYPT]
+## Installation
+* cd ImageSteganography && pipenv install
 
-  * options:
+## Usage
+ * usage: main.py [-h] -i IMAGE [-m MESSAGEIMAGE] [-p PLAINTEXT] [-e ENCRYPT] [-d DECRYPT] [-t TYPE] [-mo MODE]
+
+options:
   * -h, --help            show this help message and exit
   * -i IMAGE, --Image IMAGE
                         Cover Image path
+  * -m MESSAGEIMAGE, --MessageImage MESSAGEIMAGE
+                        Message image
   * -p PLAINTEXT, --PlainText PLAINTEXT
                         Plain text to encode
   * -e ENCRYPT, --encrypt ENCRYPT
                         Password/Key for encryption
   * -d DECRYPT, --decrypt DECRYPT
                         Password/Key for decryption
+  * -t TYPE, --type TYPE  Text embedding or image embedding: t/i
+  * -mo MODE, --MODE MODE
+                        Mode of embeddeing, normal/dct
 ## To Note:
-The final image will be of PNG format, with the filename being suffixed with "enc" and the format being png
-
-## Implementation details
-* The encryption/decryption of text is implemented using the Fernet class of the cryptography package.
-* Fernet guarantees that a message encrypted using it cannot be manipulated or read without the key. Fernet is an implementation of symmetric (also known as “secret key”) authenticated cryptography
-* All the image manipulation operations are done using the Pillow library
+The cropped message image will be saved as "cropped_msg.png"
+The embedded cover image/stego image will be saved as "output.png"
+The extracted message image will be saved as "extracted.png"
 
 
 ## List of resources
