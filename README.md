@@ -35,6 +35,16 @@ options:
   * -t TYPE, --type TYPE  Text embedding or image embedding: t/i
   * -mo MODE, --MODE MODE
                         Mode of embeddeing, normal/dct
+
+## Usage example:
+1. For Image on image without DCT
+ * Embedding: python main.py -i <Cover image path> -m <Message image path> -e <Password for encryption> -t "image" -mo "normal"
+ * Extraction: python main.py -i output.png -d <Password> -t "image" -mo "normal"
+2. For Image on image with DCT
+ * Embedding: python main.py -i <Cover image path> -m <Message image path> -e <Password for encryption> -t "image" -mo "dct"
+ * Extraction: python main.py -i output.png -d <Password> -t "image" -mo "dct"
+ 
+ 
 ## To Note:
 The cropped message image will be saved as "cropped_msg.png"
 The embedded cover image/stego image will be saved as "output.png"
@@ -46,3 +56,8 @@ The extracted message image will be saved as "extracted.png"
 * https://auth0.com/blog/image-processing-in-python-with-pillow/
 * https://pillow.readthedocs.io/en/stable/reference/Image.html
 * https://www.edureka.co/blog/steganography-tutorial
+
+* https://www.math.cuhk.edu.hk/~lmlui/dct.pdf
+* https://github.com/andreacos/BoostingCNN-Jpeg-Primary-Quantization-Matrix-Estimation/blob/b4bd209595c1dbd27841c47314a3a1b3af576f7d/utils.py#L232
+* https://arxiv.org/pdf/1912.10789.pdf
+* https://users.cs.cf.ac.uk/Dave.Marshall/Multimedia/node231.html 
