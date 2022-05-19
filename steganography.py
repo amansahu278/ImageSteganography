@@ -10,6 +10,9 @@ from crypto import Crypto
 import helpers
 
 NUM_BITS = 10
+BLOCK_SIZE = 8*8
+_IMAGE_SHAPE = 512
+IMAGE_SHAPE = _IMAGE_SHAPE * _IMAGE_SHAPE
 
 def convertToBinary(message):
     """
@@ -35,8 +38,8 @@ class ImageSteg:
     def __init__(self, cover_image_path, message_image_path = None):
         ## TODO: Add input for another file, possibly mode functionality too
         self.delimeter = "c3p0"
-        self.blocksize = 8*8
-        self.message_image_size_crop = (0, 0, 64, 64)
+        self.blocksize = BLOCK_SIZE
+        self.message_image_size_crop = (0, 0, _IMAGE_SHAPE, _IMAGE_SHAPE)
 
         self.cover_image_path = cover_image_path
         self.cover_image_filename = os.path.split(self.cover_image_path)[1]
@@ -357,9 +360,10 @@ class ImageSteg:
         crypto = Crypto(password)
         CT_chained = bytes()
 
-        for block in range(64):
-            column = block % 8 # Block 0->0, 1->1, 2->2, 3->3... 7->7, 8->0, 9->1
-            row = block // 8 # Block 0,1,2,3,4,5,6,7->0. 8,9..->1
+        for block in range(IMAGE_SHAPE//BLOCK_SIZE):
+            # TODO: Change the column, row logic
+            column = block % (_IMAGE_SHAPE//8) # Block 0->0, 1->1, 2->2, 3->3... 7->7, 8->0, 9->1
+            row = block // (_IMAGE_SHAPE//8) # Block 0,1,2,3,4,5,6,7->0. 8,9..->1
             
             start = (column * 8, row*8)
             end   = ((column+1)*8, (row+1)*8)
@@ -433,7 +437,7 @@ class ImageSteg:
         extractedCT = convertBinToString(extractedCT)
         extractedCT_blocks = ['gAAAA'+e for e in extractedCT.split('gAAAA') if e]
         
-        extracted_img = Image.new(mode="RGB", size=(64,64))
+        extracted_img = Image.new(mode="RGB", size=(_IMAGE_SHAPE,_IMAGE_SHAPE))
         
         crypto = Crypto(password)
         PT_blocks = list(map(crypto.decryptCT, extractedCT_blocks))
@@ -442,12 +446,15 @@ class ImageSteg:
         convertBinToNum = lambda a: [int(a[i:i+NUM_BITS], 2) for i in range(0, len(a), NUM_BITS)]
         PT_block_nums = [convertBinToNum(bin) for bin in PT_blocks]
         # Each num block in PT_block_nums has 192 = 64*3 elements
-
+        
         batchNums = lambda a: [a[i:i+64] for i in range(0, len(a), 64)] 
         blocks_of_nums = [batchNums(block) for block in PT_block_nums]
-        # Blocks of nums has blocks of 64 numbers. 3 such consecutive blocks of numbers form an image block.
+        for block in blocks_of_nums:
+            print(block, len(block))
+        # Blocks of nums has blocks of IMAGE_SHAPE/BLOCK_SIZE numbers. 3 such consecutive blocks of numbers form an image block.
+        # If image is 64x64, then 64 blocks,
         
-        for block in range(64):
+        for block in range(IMAGE_SHAPE//BLOCK_SIZE):
             pixel_idx = 0    
 
             # For each block of numbers, we need to get the org back
@@ -462,8 +469,8 @@ class ImageSteg:
             g = g_decoded.flatten()
             b = b_decoded.flatten()
 
-            column = block % 8 # Block 0->0, 1->1, 2->2, 3->3... 7->7, 8->0, 9->1
-            row = block // 8 # Block 0,1,2,3,4,5,6,7->0. 8,9..->1
+            column = block % (_IMAGE_SHAPE//8) # Block 0->0, 1->1, 2->2, 3->3... 7->7, 8->0, 9->1
+            row = block // (_IMAGE_SHAPE//8) # Block 0,1,2,3,4,5,6,7->0. 8,9..->1
             
             start = (column * 8, row*8)
             end = ((column+1)*8, (row+1)*8)
